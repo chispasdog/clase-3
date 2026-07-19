@@ -1,4 +1,4 @@
-// Gestor de videojuegos: carga datos.json y lo muestra en una tabla.
+// Gestor de videojuegos: carga los datos de datos.js y los muestra en una tabla.
 
 let juegos = [];
 
@@ -27,18 +27,11 @@ function borrarJuego(id) {
   pintarTabla(juegos);
 }
 
-// Lee datos.json al arrancar la pagina.
-async function cargarDatos() {
-  try {
-    const res = await fetch("datos.json");
-    const datos = await res.json();
-    juegos = datos.juegos;
-    document.getElementById("titulo").textContent = datos.catalogo;
-    pintarTabla(juegos);
-  } catch (error) {
-    document.getElementById("titulo").textContent =
-      "Error al cargar datos.json (abre la pagina con python -m http.server)";
-  }
+// Carga los datos al arrancar. Sin fetch, asi funciona con doble clic.
+function cargarDatos() {
+  juegos = DATOS.juegos.map((juego) => ({ ...juego }));
+  document.getElementById("titulo").textContent = DATOS.catalogo;
+  pintarTabla(juegos);
 }
 
 // Anade un juego nuevo al array y repinta la tabla.
