@@ -72,4 +72,23 @@ document.getElementById("exportar").addEventListener("click", () => {
   URL.revokeObjectURL(enlace.href);
 });
 
+// Carga un datos.json elegido a mano por el usuario.
+document.getElementById("importar").addEventListener("change", (evento) => {
+  const archivo = evento.target.files[0];
+  if (!archivo) return;
+
+  const lector = new FileReader();
+  lector.onload = () => {
+    try {
+      const datos = JSON.parse(lector.result);
+      juegos = datos.juegos;
+      document.getElementById("titulo").textContent = datos.catalogo;
+      pintarTabla(juegos);
+    } catch (error) {
+      alert("Ese archivo no es un JSON valido");
+    }
+  };
+  lector.readAsText(archivo);
+});
+
 cargarDatos();
