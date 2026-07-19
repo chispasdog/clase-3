@@ -69,4 +69,14 @@ document.getElementById("buscador").addEventListener("input", (evento) => {
   pintarTabla(filtrados);
 });
 
+// Descarga el catalogo actual como un datos.json nuevo.
+document.getElementById("exportar").addEventListener("click", () => {
+  const contenido = JSON.stringify({ catalogo: "Videojuegos de clase", juegos }, null, 2);
+  const enlace = document.createElement("a");
+  enlace.href = URL.createObjectURL(new Blob([contenido], { type: "application/json" }));
+  enlace.download = "datos.json";
+  enlace.click();
+  URL.revokeObjectURL(enlace.href);
+});
+
 cargarDatos();
