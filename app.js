@@ -33,4 +33,21 @@ async function cargarDatos() {
   }
 }
 
+// Anade un juego nuevo al array y repinta la tabla.
+document.getElementById("formulario").addEventListener("submit", (evento) => {
+  evento.preventDefault();
+
+  const nuevo = {
+    id: juegos.length ? Math.max(...juegos.map((j) => j.id)) + 1 : 1,
+    titulo: document.getElementById("titulo-nuevo").value,
+    genero: document.getElementById("genero-nuevo").value,
+    anio: Number(document.getElementById("anio-nuevo").value),
+    nota: Number(document.getElementById("nota-nuevo").value),
+  };
+
+  juegos.push(nuevo);
+  pintarTabla(juegos);
+  evento.target.reset();
+});
+
 cargarDatos();
