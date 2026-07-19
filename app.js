@@ -19,6 +19,9 @@ function pintarTabla(lista) {
     fila.querySelector("button").addEventListener("click", () => borrarJuego(juego.id));
     tabla.appendChild(fila);
   });
+
+  document.getElementById("contador").textContent =
+    `Juegos en el catalogo: ${lista.length}`;
 }
 
 // Quita un juego del array por su id y repinta.
