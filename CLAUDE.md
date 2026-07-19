@@ -29,17 +29,14 @@ Prefijos usados: `feat` (funcionalidad nueva), `fix` (arreglo),
 
 ## Como probar la app
 
-Necesita un servidor porque `fetch` no funciona abriendo el HTML con doble clic
-(el navegador bloquea `file://`):
+Doble clic en `index.html`. Ya esta, no hace falta servidor ni instalar nada.
 
-```bash
-python -m http.server 8000
-```
-
-Y abrir http://localhost:8000
+Los datos iniciales viven en `datos.js` (como variable JS) en vez de cargarse
+con `fetch` desde el JSON, porque el navegador bloquea `fetch` sobre `file://`.
 
 ## Estructura
 
 - `index.html` — interfaz
 - `app.js` — logica del gestor
-- `datos.json` — catalogo inicial de juegos
+- `datos.js` — catalogo inicial que carga la pagina al abrirse
+- `datos.json` — el mismo catalogo en JSON, para importar/exportar a mano
