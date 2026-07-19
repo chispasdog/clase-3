@@ -58,4 +58,15 @@ document.getElementById("formulario").addEventListener("submit", (evento) => {
   evento.target.reset();
 });
 
+// Filtra por titulo o genero segun lo que se escriba en el buscador.
+document.getElementById("buscador").addEventListener("input", (evento) => {
+  const texto = evento.target.value.toLowerCase();
+  const filtrados = juegos.filter(
+    (juego) =>
+      juego.titulo.toLowerCase().includes(texto) ||
+      juego.genero.toLowerCase().includes(texto)
+  );
+  pintarTabla(filtrados);
+});
+
 cargarDatos();
