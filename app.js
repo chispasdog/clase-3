@@ -14,9 +14,17 @@ function pintarTabla(lista) {
       <td>${juego.genero}</td>
       <td>${juego.anio}</td>
       <td>${juego.nota}</td>
+      <td><button data-id="${juego.id}">Borrar</button></td>
     `;
+    fila.querySelector("button").addEventListener("click", () => borrarJuego(juego.id));
     tabla.appendChild(fila);
   });
+}
+
+// Quita un juego del array por su id y repinta.
+function borrarJuego(id) {
+  juegos = juegos.filter((juego) => juego.id !== id);
+  pintarTabla(juegos);
 }
 
 // Lee datos.json al arrancar la pagina.
