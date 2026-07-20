@@ -46,8 +46,6 @@ jobs:
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true   # activa Pages la primera vez sin tocar ajustes
 
       - name: Empaquetar la web
         uses: actions/upload-pages-artifact@v3
