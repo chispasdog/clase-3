@@ -1,0 +1,10 @@
+{
+  "catalogo": "Videojuegos de clase",
+  "juegos": [
+    { "id": 1, "titulo": "Estrellas de Neon", "genero": "Aventura", "anio": 2019, "nota": 8.5 },
+    { "id": 2, "titulo": "Puerto Sombrio", "genero": "Terror", "anio": 2021, "nota": 7.2 },
+    { "id": 3, "titulo": "Kart Furioso", "genero": "Carreras", "anio": 2017, "nota": 9.1 },
+    { "id": 4, "titulo": "Reino de Piedra", "genero": "Estrategia", "anio": 2023, "nota": 6.8 },
+    { "id": 5, "titulo": "Salto Infinito", "genero": "Plataformas", "anio": 2020, "nota": 8.9 }
+  ]
+}
