@@ -1,0 +1,29 @@
+name: CI
+
+# Se ejecuta en cada push a las ramas vivas y en cada Pull Request.
+# Valida el codigo ANTES de que llegue a main, para desplegar sin miedo.
+on:
+  push:
+    branches: [dev, pre, main]
+  pull_request:
+
+jobs:
+  validar:
+    name: Validar codigo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Comprobar sintaxis del JavaScript
+        run: |
+          node --check app.js
+          node --check datos.js
+
+      - name: Comprobar que datos.json es un JSON valido
+        run: node -e "JSON.parse(require('fs').readFileSync('datos.json','utf8')); console.log('datos.json OK')"
