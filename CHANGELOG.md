@@ -6,6 +6,7 @@ y versionado según [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
+### ejemplo
 ### Añadido
 - Estándares de trabajo con Git en `CLAUDE.md`.
 - Comandos `/commit`, `/rama` y `/publicar` en `.claude/commands/`.
