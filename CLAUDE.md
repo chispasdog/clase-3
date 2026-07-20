@@ -219,23 +219,7 @@ Al trabajar en este repositorio:
 6. Al terminar una funcionalidad, proponer la actualización del `CHANGELOG.md`.
 7. Explicar los comandos usados: este repo es material de clase.
 
-## 10. CI/CD (automatización)
-
-Hay dos workflows en `.github/workflows/`:
-
-| Workflow | Cuándo | Qué hace |
-|---|---|---|
-| `ci.yml` | Push a `dev`/`pre`/`main` y cada PR | Valida sintaxis JS y que `datos.json` sea válido |
-| `deploy.yml` | Push a `main` | Valida y, si pasa, publica la web en GitHub Pages |
-
-Idea clave: **`main` se despliega solo**. Nadie sube archivos a mano a ningún
-servidor. El despliegue solo ocurre si la validación pasa primero (`needs:
-validar`), por eso se puede promocionar a `main` sin miedo.
-
-- Web publicada: https://chispasdog.github.io/clase-3/
-- Estado de los despliegues: pestaña **Actions** del repo en GitHub.
-
-## 11. La app
+## 10. La app
 
 Doble clic en `index.html`. No necesita servidor ni instalación.
 

@@ -6,15 +6,10 @@ y versionado según [SemVer](https://semver.org/lang/es/).
 
 ## [Sin publicar]
 
-## [1.2.0] - 2026-07-20
-
 ### Añadido
-- **CI/CD con GitHub Actions:** `ci.yml` valida el código en cada push/PR y
-  `deploy.yml` publica la web en GitHub Pages automáticamente al llegar a `main`.
 - Estándares de trabajo con Git en `CLAUDE.md`.
 - Comandos `/commit`, `/rama` y `/publicar` en `.claude/commands/`.
 - `.gitignore` y este `CHANGELOG.md`.
-- Badge de despliegue y enlace a la web en vivo en el README.
 
 ## [1.1.0] - 2026-07-19
 
