@@ -1,13 +1,22 @@
 name: Deploy
 
-# Despliegue continuo a GitHub Pages. Solo se dispara al llegar algo a main.
+# Despliegue continuo a GitHub Pages (modo "GitHub Actions").
+# Solo se dispara al llegar algo a main.
 on:
   push:
     branches: [main]
-  workflow_dispatch:   # tambien se puede lanzar a mano desde la pestana Actions
+  workflow_dispatch:
 
+# Permisos que necesita el despliegue nativo de Pages.
 permissions:
-  contents: write   # necesario para publicar en la rama gh-pages
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita que dos despliegues se pisen.
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   # 1) Primero valida. Si esto falla, NO se despliega.
@@ -29,6 +38,9 @@ jobs:
     name: Publicar en GitHub Pages
     needs: validar
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,9 +49,14 @@ jobs:
           mkdir _site
           cp index.html app.js datos.js datos.json _site/
 
-      - name: Publicar en la rama gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Configurar Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir el sitio como artefacto
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./_site
-          publish_branch: gh-pages
+          path: ./_site
+
+      - name: Desplegar en GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
