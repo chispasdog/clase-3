@@ -1,0 +1,45 @@
+name: Deploy
+
+# Despliegue continuo a GitHub Pages. Solo se dispara al llegar algo a main.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # tambien se puede lanzar a mano desde la pestana Actions
+
+permissions:
+  contents: write   # necesario para publicar en la rama gh-pages
+
+jobs:
+  # 1) Primero valida. Si esto falla, NO se despliega.
+  validar:
+    name: Validar codigo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: |
+          node --check app.js
+          node --check datos.js
+      - run: node -e "JSON.parse(require('fs').readFileSync('datos.json','utf8'))"
+
+  # 2) Solo si 'validar' pasa, se publica la web.
+  deploy:
+    name: Publicar en GitHub Pages
+    needs: validar
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Preparar la carpeta del sitio
+        run: |
+          mkdir _site
+          cp index.html app.js datos.js datos.json _site/
+
+      - name: Publicar en la rama gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site
+          publish_branch: gh-pages
