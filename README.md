@@ -6,6 +6,9 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 ![JSON](https://img.shields.io/badge/JSON-000000?logo=json&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?logo=git&logoColor=white)
+[![Deploy](https://github.com/chispasdog/clase-3/actions/workflows/deploy.yml/badge.svg)](https://github.com/chispasdog/clase-3/actions/workflows/deploy.yml)
+
+### 🌐 [Ver la web en vivo →](https://chispasdog.github.io/clase-3/)
 
 ---
 
