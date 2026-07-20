@@ -46,6 +46,8 @@ jobs:
 
       - name: Configurar Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true   # repo publico: activa Pages solo, sin tocar Settings
 
       - name: Empaquetar la web
         uses: actions/upload-pages-artifact@v3
